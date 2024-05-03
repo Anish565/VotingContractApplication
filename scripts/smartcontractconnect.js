@@ -154,10 +154,15 @@ async function main() {
  
     // Example: Triggering the voteForCandidate function
     const candidate = "Anish";
+    const candidate2 = "Akshat";
     console.log("Failing here");
     const byteCode = await contract.generateToken(candidate, {gasLimit:3000000});
+    const byteCode2 = await contract.generateToken(candidate, {gasLimit:3000000});
+    const candidates = [byteCode, byteCode2];
     console.log(byteCode);
-    const testVariable = await contract.validCandidate(candidate, {gasLimit:3000000});
+    await contract.Voting(candidates, {gasLimit:3000000});
+
+    const testVariable = await contract.voteForCandidate(byteCode, {gasLimit:3000000});
     console.log(testVariable)
     console.log("Total Votes..");
     // Example: Triggering the totalVotesFor function

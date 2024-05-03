@@ -6,8 +6,8 @@ contract VotingContract {
     bytes32[] public candidatesNames;
     mapping(bytes32 => bool) public voters; 
 
-    function Voting(bytes32[] memory candidates) public {
-        candidatesNames = candidates;
+    function Voting(bytes32[] memory _candidates) public {
+        candidatesNames = _candidates;
     }
 
     function totalVotesFor(bytes32 candidate) public view returns (uint8) {

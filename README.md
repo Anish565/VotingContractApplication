@@ -15,3 +15,9 @@ npx hardhat ignition deploy ./ignition/modules/Lock.js
 
 cd into cnotracts --> npx hardhat compile
 
+To run the smart contract script:
+node .\scripts\smartcontractconnect.js
+
+
+Deploying contract command:
+npx hardhat run .\scripts\deploy.js --network localhost
