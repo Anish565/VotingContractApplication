@@ -6,24 +6,33 @@ contract VotingContract {
     bytes32[] public candidatesNames;
     mapping(bytes32 => bool) public voters; 
 
-    function Voting(bytes32[] memory _candidates) public {
-        candidatesNames = _candidates;
+     function Voting(bytes32[] memory candidates) public {
+        candidatesNames = candidates;
     }
+   
+    // constructor(bytes32[] memory _candidates) {
+    //     candidatesNames = _candidates;
+    // }
 
     function totalVotesFor(bytes32 candidate) public view returns (uint8) {
         if (!validCandidate(candidate)) {
-            revert();
+            revert("Not a valid candidate! Exiting..");
         }
         return votes[candidate];
     }
 
-    function voteForCandidate(bytes32 candidate) public {
+    function voteForCandidate(bytes32 candidate, string memory _name, string memory _driverLicense, string memory _address) public {
         if (!validCandidate(candidate)) {
-            revert();
+            revert("Not a valid candidate. Exiting..");
         }
-        bytes32 token = generateToken(string(abi.encodePacked(msg.sender, candidate)));
+        bytes32 token = generateToken(string(abi.encodePacked(
+            msg.sender,
+            bytes32(abi.encodePacked(_name)),
+            bytes32(abi.encodePacked(_driverLicense)),
+            bytes32(abi.encodePacked(_address))
+        )));
         if (voters[token]) {
-            revert();
+            revert("Already voted. Cannot vote again!");
         }
         votes[candidate]++;
         voters[token] = true;

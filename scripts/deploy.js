@@ -22,14 +22,25 @@ main()
   process.exit(1);
 });*/
 
+// const { keccak256 } = require("ethers");
 const { ethers } = require("hardhat");
+// const { utils, abi } = require("hardhat").ethers;
+// const { eth } = require("ethers");
  
 async function main() {
     const VotingContract = await ethers.getContractFactory("VotingContract");
-    const votingContract = await VotingContract.deploy(["Anish", "Akshat"]); // Provide candidate names here
+    const votingContract = await VotingContract.deploy(); // Provide candidate names here ["Anish", "Sumedh"]
+    // const votingAddress = await votingContract.getAddress();
+    const candidate1 = votingContract.generateToken("Anish");
+    const candidate2 = votingContract.generateToken("Sumedh");
+    // const candidate1 = utils.formatBytes32String("Anish");
+    // const candidate2 = utils.formatBytes32String("Sumedh");
+    // console.log(candidate1, candidate2);
+    await votingContract.Voting([candidate1, candidate2]);
 //    await votingContract.deploy();
  
     console.log("VotingContract deployed to:", votingContract.target);
+
 }
  
 main()

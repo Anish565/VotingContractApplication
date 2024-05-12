@@ -21,3 +21,7 @@ node .\scripts\smartcontractconnect.js
 
 Deploying contract command:
 npx hardhat run .\scripts\deploy.js --network localhost
+
+
+in version 6.6.2 ==> we were able to deploy
+now in version 5.7.2 ==> we can test
