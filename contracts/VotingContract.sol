@@ -2,6 +2,7 @@
 pragma solidity ^0.8.0;
 
 contract VotingContract {
+    uint256 public chainId = 11155111; // Sepolia chain ID
     mapping(bytes32 => uint8) public votes;
     bytes32[] public candidatesNames;
     mapping(bytes32 => bool) public voters; 

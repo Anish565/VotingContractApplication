@@ -31,16 +31,23 @@ async function main() {
     const VotingContract = await ethers.getContractFactory("VotingContract");
     const votingContract = await VotingContract.deploy(); // Provide candidate names here ["Anish", "Sumedh"]
     // const votingAddress = await votingContract.getAddress();
-    const candidate1 = votingContract.generateToken("Anish");
-    const candidate2 = votingContract.generateToken("Sumedh");
-    // const candidate1 = utils.formatBytes32String("Anish");
+    console.log("Contract deploy phase passed!");
+
+    console.log("VotingContract deployed to:", votingContract.target);
+    //const candidate1 = await votingContract.generateToken("Anish");
+    //console.log(candidate1);
+    // //const candidate2 = await votingContract.generateToken("Sumedh");
+    // //console.log(candidate2);
+    const candidate1 = ethers.encodeBytes32String("Anish");
+    const candidate2 = ethers.encodeBytes32String("Sumedh");
+    console.log(candidate1, candidate2);
     // const candidate2 = utils.formatBytes32String("Sumedh");
     // console.log(candidate1, candidate2);
     await votingContract.Voting([candidate1, candidate2]);
 //    await votingContract.deploy();
  
     console.log("VotingContract deployed to:", votingContract.target);
-
+//    https://sepolia.etherscan.io/address/0x2c29c28B7598fC715cd0D3CC427c48D43C984DE6
 }
  
 main()
